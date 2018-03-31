@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.tinymediamanager</groupId>
+        <artifactId>tmm-parent</artifactId>
+        <version>3.0</version>
+    </parent>
+
+    <groupId>org.agileinsider.tmm</groupId>
+
+    <artifactId>scraper-podnapisi</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>podnapisis.net scraper</name>
+    <description>A scraper for Subtitles from podnapisi.net</description>
+
+    <url>http://www.agileinsider.org/</url>
+
+    <scm>
+        <url>https://github.com/agileinsider/tmm-scraper-podnapisi</url>
+        <connection>scm:git:git@github.com:agileinsider/tmm-scraper-podnapisi.git</connection>
+        <developerConnection>scm:git:git@github.com:agileinsider/tmm-scraper-podnapisi.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.tinymediamanager</groupId>
+            <artifactId>api-scraper</artifactId>
+            <version>3.0-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+            <version>2.9.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+            <version>1.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jmock</groupId>
+            <artifactId>jmock-junit4</artifactId>
+            <version>2.8.4</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.3</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <artifactSet>
+                                <includes>
+                                    <include>com.fasterxml.jackson.dataformat:jackson-dataformat-xml</include>
+                                    <include>com.fasterxml.jackson.module:jackson-module-jaxb-annotations</include>
+                                    <include>com.fasterxml.woodstox:woodstox-core</include>
+                                    <include>org.codehaus.woodstox:stax2-api</include>
+                                </includes>
+                            </artifactSet>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
